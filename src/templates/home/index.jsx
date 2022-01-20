@@ -12,7 +12,7 @@ class Home extends Component {
     allPosts: [],
     page: 0,
     postsPerPage: 12,
-    searchValue: ''
+    searchValue: '',
   };
 
   async componentDidMount() {
@@ -22,9 +22,9 @@ class Home extends Component {
   loadPosts = async () => {
     const { page, postsPerPage } = this.state;
     const postsAndPhotos = await loadPosts();
-    this.setState({ 
+    this.setState({
       posts: postsAndPhotos.slice(page, postsPerPage),
-      allPosts: postsAndPhotos, 
+      allPosts: postsAndPhotos,
     });
   }
 
@@ -51,11 +51,11 @@ render() {
     const { posts, page, postsPerPage, allPosts, searchValue } = this.state;
     const noMorePosts = page + postsPerPage >= allPosts.length;
 
-    const filteredPosts = !!searchValue ? 
+    const filteredPosts = !!searchValue ?
     allPosts.filter(post => {
       return post.title.toLowerCase().includes(
         searchValue.toLowerCase());
-    }) 
+    })
     : posts;
 
 
@@ -78,13 +78,13 @@ render() {
 
         <div className="button-container">
         {!searchValue && (
-          <Button 
-              text="Load more posts" 
+          <Button
+              text="Load more posts"
               onClick={this.loadMorePosts}
               disabled={noMorePosts}
           />
-        )}  
-        </div> 
+        )}
+        </div>
       </section>
     );
   }
